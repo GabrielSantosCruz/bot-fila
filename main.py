@@ -32,16 +32,13 @@ def main():
             #print(dados[0][:46])
 
         KEY = dados[0][:46] # key gerada pelo BotFather quando seu bot é criado
-        MY_ID = dados[1] # id do chato onde a mensagem deve ser enviada
+        MY_ID = dados[1] # id do chat onde a mensagem deve ser enviada
 
         bot = tb.TeleBot(KEY)
 
         # função para o bot enviar a mensagem 
         def avisar_fila():
             bot.send_message(MY_ID, 'Fila aceita meu jovem')
-
-    else:
-        pass
 
     print('Buscando fila!')
     while True:
