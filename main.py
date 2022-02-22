@@ -21,9 +21,17 @@ def verificar_fila():
         return True
 
 def main():
+    print(""" 
+                ╭━━━╮╭╮╱╱╱╭━━╮╱╱╱╭╮
+                ┃╭━━╯┃┃╱╱╱┃╭╮┃╱╱╭╯╰╮
+                ┃╰━━┳┫┃╭━━┫╰╯╰┳━┻╮╭╯
+                ┃╭━━╋┫┃┃╭╮┃╭━╮┃╭╮┃┃
+                ┃┃╱╱┃┃╰┫╭╮┃╰━╯┃╰╯┃╰╮
+                ╰╯╱╱╰┻━┻╯╰┻━━━┻━━┻━╯""")
     alert = validation(input('Deseja ser alertado pelo Bot no Telegram? [S/N]: ').upper())
     
     if alert == 'S':
+        print("Bot Telegram Status: [On]")
         import telebot as tb # importa a API do Telegram
 
         # abre um arquivo com os dados da KEY do bot e o Id onde ele deve enviar a mensagem
@@ -39,7 +47,9 @@ def main():
         # função para o bot enviar a mensagem 
         def avisar_fila():
             bot.send_message(MY_ID, 'Fila aceita meu jovem')
-
+    else:
+        print("Bot Telegram Status: [Off]")
+        
     print('Buscando fila!')
     while True:
         time = str(datetime.now())
