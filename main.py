@@ -1,7 +1,9 @@
 import pyautogui as pg
 from time import sleep
 from datetime import datetime
+import telebot as tb
 
+#valida a entrada digitada
 def validation(string):
     while string not in 'SN':
         string = input('Digite apenas S ou N: ')
@@ -20,6 +22,20 @@ def verificar_fila():
         click(position.left, position.top)
         return True
 
+def avisar_fila():
+    # abre um arquivo com os dados da KEY do bot e o Id onde ele deve enviar a mensagem
+    with open('ids.txt', 'r') as file:
+        dados = file.readlines()
+        #print(dados[0][:46])
+
+    KEY = dados[0][:46] # key gerada pelo BotFather quando seu bot é criado
+    MY_ID = dados[1] # id do chat onde a mensagem deve ser enviada
+
+    bot = tb.TeleBot(KEY)
+
+    # função para o bot enviar a mensagem
+    bot.send_message(MY_ID, 'Fila aceita meu jovem')
+
 def main():
     print(""" 
                 ╭━━━╮╭╮╱╱╱╭━━╮╱╱╱╭╮
@@ -32,21 +48,7 @@ def main():
     
     if alert == 'S':
         print("Bot Telegram Status: [On]")
-        import telebot as tb # importa a API do Telegram
 
-        # abre um arquivo com os dados da KEY do bot e o Id onde ele deve enviar a mensagem
-        with open('ids.txt', 'r') as file:
-            dados = file.readlines()
-            #print(dados[0][:46])
-
-        KEY = dados[0][:46] # key gerada pelo BotFather quando seu bot é criado
-        MY_ID = dados[1] # id do chat onde a mensagem deve ser enviada
-
-        bot = tb.TeleBot(KEY)
-
-        # função para o bot enviar a mensagem 
-        def avisar_fila():
-            bot.send_message(MY_ID, 'Fila aceita meu jovem')
     else:
         print("Bot Telegram Status: [Off]")
         
